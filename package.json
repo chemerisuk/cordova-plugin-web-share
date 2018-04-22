@@ -1,0 +1,33 @@
+{
+  "name": "cordova-plugin-share-dialog",
+  "version": "0.13.0",
+  "description": "Native sharing dialog for Cordova",
+  "cordova": {
+    "id": "cordova-plugin-share-dialog",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chemerisuk/cordova-plugin-share-dialog.git"
+  },
+  "author": "Maksim Chemerisuk <chemerisuk@gmail.com> (https://github.com/chemerisuk)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chemerisuk/cordova-plugin-share-dialog/issues"
+  },
+  "homepage": "https://github.com/chemerisuk/cordova-plugin-share-dialog#readme",
+  "keywords": [
+    "cordova",
+    "share",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "scripts": {
+    "version": "replace -s 'version=\"(.+)(?=\">)' 'version=\"'$npm_package_version plugin.xml && git add plugin.xml",
+    "postversion": "git push && git push --tags"
+  }
+}
