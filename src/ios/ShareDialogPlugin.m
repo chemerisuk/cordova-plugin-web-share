@@ -25,6 +25,10 @@
 
             dlg.excludedActivityTypes = options[@"iosExcludedActivities"];
 
+            if (options[@"subject"]) {
+                [dlg setValue:options[@"subject"] forKey:@"subject"];
+            }
+
             UIPopoverPresentationController *popover = dlg.popoverPresentationController;
             if (popover) {
                 popover.permittedArrowDirections = 0;
@@ -43,7 +47,7 @@
                     } else if (completed) {
                         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:activityType];
                     } else {
-                        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:NULL];
+                        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
                     }
 
                     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
