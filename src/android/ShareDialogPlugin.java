@@ -66,7 +66,7 @@ public class ShareDialogPlugin extends CordovaPlugin {
         String title = options.optString("title");
         String url = options.optString("url");
         if (!url.isEmpty()) {
-            text += " " + url;
+            text += "\n" + url;
         }
 
         Intent sendIntent = new Intent(Intent.ACTION_SEND);
