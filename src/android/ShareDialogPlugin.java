@@ -63,15 +63,21 @@ public class ShareDialogPlugin extends CordovaPlugin {
 
     private void share(JSONObject options, CallbackContext callbackContext) throws JSONException {
         String text = options.getString("text");
+        String subject = options.optString("subject");
         String title = options.optString("title");
         String url = options.optString("url");
+
         if (!url.isEmpty()) {
-            text += "\n" + url;
+            text += "\n\n" + url;
         }
 
         Intent sendIntent = new Intent(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, text);
         sendIntent.setType("text/plain");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, text);
+
+        if (!subject.isEmpty()) {
+            sendIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        }
 
         if (chosenComponentPI != null) {
             sendIntent = Intent.createChooser(sendIntent, title, chosenComponentPI.getIntentSender());
