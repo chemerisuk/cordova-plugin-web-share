@@ -25,8 +25,8 @@
 
             dlg.excludedActivityTypes = options[@"iosExcludedActivities"];
 
-            if (options[@"subject"]) {
-                [dlg setValue:options[@"subject"] forKey:@"subject"];
+            if (options[@"title"]) {
+                [dlg setValue:options[@"title"] forKey:@"subject"];
             }
 
             UIPopoverPresentationController *popover = dlg.popoverPresentationController;
