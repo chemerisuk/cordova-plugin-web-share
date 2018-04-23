@@ -1,14 +1,14 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 xmlns:android="http://schemas.android.com/apk/res/android"
-           id="cordova-plugin-share-dialog"
+           id="cordova-plugin-web-share"
       version="0.9.0">
 
     <name>ShareDialogPlugin</name>
     <description>Native sharing dialog for Cordova</description>
     <license>MIT</license>
     <keywords>cordova</keywords>
-    <repo>https://github.com/chemerisuk/cordova-plugin-share-dialog</repo>
-    <issue>https://github.com/chemerisuk/cordova-plugin-share-dialog/issues</issue>
+    <repo>https://github.com/chemerisuk/cordova-plugin-web-share</repo>
+    <issue>https://github.com/chemerisuk/cordova-plugin-web-share/issues</issue>
 
     <js-module src="www/ShareDialog.js" name="ShareDialog">
         <clobbers target="window.navigator.share" />

@@ -1,9 +1,9 @@
-# cordova-plugin-share-dialog<br>[![NPM version][npm-version]][npm-url] [![NPM downloads][npm-downloads]][npm-url]
+# cordova-plugin-web-share<br>[![NPM version][npm-version]][npm-url] [![NPM downloads][npm-downloads]][npm-url]
 > Native sharing dialog for Cordova
 
 ## Installation
 
-    cordova plugin add cordova-plugin-share-dialog --save
+    cordova plugin add cordova-plugin-web-share --save
 
 ## Supported Platforms
 
@@ -12,7 +12,7 @@
 
 ## Methods
 
-[npm-url]: https://www.npmjs.com/package/cordova-plugin-share-dialog
-[npm-version]: https://img.shields.io/npm/v/cordova-plugin-share-dialog.svg
-[npm-downloads]: https://img.shields.io/npm/dm/cordova-plugin-share-dialog.svg
+[npm-url]: https://www.npmjs.com/package/cordova-plugin-web-share
+[npm-version]: https://img.shields.io/npm/v/cordova-plugin-web-share.svg
+[npm-downloads]: https://img.shields.io/npm/dm/cordova-plugin-web-share.svg
 
