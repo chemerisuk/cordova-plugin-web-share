@@ -1,7 +1,7 @@
 {
   "name": "cordova-plugin-web-share",
   "version": "0.9.0",
-  "description": "Native sharing dialog for Cordova",
+  "description": "Web Share API polyfill for Cordova",
   "cordova": {
     "id": "cordova-plugin-web-share",
     "platforms": [
@@ -22,6 +22,7 @@
   "keywords": [
     "cordova",
     "share",
+    "web share",
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios"
