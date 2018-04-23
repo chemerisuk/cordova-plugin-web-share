@@ -7,10 +7,14 @@ var DEFAULT_IOS_EXCLUSIONS = [
 
 module.exports = function(options) {
     return new Promise(function(resolve, reject) {
-        if (!options.iosExcludedActivities) {
-            options.iosExcludedActivities = DEFAULT_IOS_EXCLUSIONS;
-        }
+        if (!options || !options.text && !options.url) {
+            reject(new TypeError("Nothing to share"));
+        } else {
+            if (!options.iosExcludedActivities) {
+                options.iosExcludedActivities = DEFAULT_IOS_EXCLUSIONS;
+            }
 
-        exec(resolve, reject, PLUGIN_NAME, "share", [options]);
+            exec(resolve, reject, PLUGIN_NAME, "share", [options]);
+        }
     });
 };
