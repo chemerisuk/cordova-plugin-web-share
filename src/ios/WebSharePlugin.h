@@ -1,6 +1,6 @@
 #import <Cordova/CDV.h>
 
-@interface ShareDialogPlugin : CDVPlugin
+@interface WebSharePlugin : CDVPlugin
 
 - (void)share:(CDVInvokedUrlCommand*)command;
 

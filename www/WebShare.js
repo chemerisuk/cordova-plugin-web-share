@@ -1,5 +1,5 @@
 var exec = require("cordova/exec");
-var PLUGIN_NAME = "ShareDialog";
+var PLUGIN_NAME = "WebShare";
 var DEFAULT_IOS_EXCLUSIONS = [
         "com.apple.UIKit.activity.AddToReadingList",
         "com.apple.UIKit.activity.AirDrop"

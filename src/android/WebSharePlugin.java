@@ -17,7 +17,7 @@ import android.content.ComponentName;
 import android.content.IntentFilter;
 import android.os.Build;
 
-public class ShareDialogPlugin extends CordovaPlugin {
+public class WebSharePlugin extends CordovaPlugin {
     private static final int SHARE_REQUEST_CODE = 18457896;
 
     private CallbackContext shareCallbackContext;

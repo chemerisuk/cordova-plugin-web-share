@@ -1,7 +1,7 @@
-#import "ShareDialogPlugin.h"
+#import "WebSharePlugin.h"
 #import <Cordova/CDV.h>
 
-@implementation ShareDialogPlugin
+@implementation WebSharePlugin
 
 - (void)share:(CDVInvokedUrlCommand*)command {
     NSDictionary* options = [command argumentAtIndex:0 withDefault:@{} andClass:[NSDictionary class]];
