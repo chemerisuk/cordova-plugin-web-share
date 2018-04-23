@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-web-share",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "Web Share API polyfill for Cordova",
   "cordova": {
     "id": "cordova-plugin-web-share",
