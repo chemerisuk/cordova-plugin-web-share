@@ -26,7 +26,19 @@ navigator.share({
 });
 ```
 
-Method returns a `Promise` object, that resolves with a string containing the package name of app, that user used to. While the standards prohibits any collection personal information, native apps are less restricted.
+Method returns a `Promise` object that resolved on success.
+
+Unlike the standard, that is web-oriented therefore must be very carefull on allowing access to private user information, apps are usually less restricted. So in the plugin returned promise resolves with a string value - package name of the app that user used to share:
+
+```js
+navigator.share({...}).then((packageName) => {
+    if (packageName) {
+        console.log("Data was shared successfully with", packageName);        
+    }
+}).catch((err) => {
+    console.error("Share failed:", err.message);
+});
+```
 
 [npm-url]: https://www.npmjs.com/package/cordova-plugin-web-share
 [npm-version]: https://img.shields.io/npm/v/cordova-plugin-web-share.svg
