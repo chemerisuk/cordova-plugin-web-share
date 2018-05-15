@@ -18,44 +18,39 @@
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     } else {
-        [self.commandDelegate runInBackground: ^{
-            UIActivityViewController* dlg = [[UIActivityViewController alloc]
-                                                  initWithActivityItems:activityItems
-                                                  applicationActivities:NULL];
+        UIActivityViewController* dlg = [[UIActivityViewController alloc]
+                                              initWithActivityItems:activityItems
+                                              applicationActivities:NULL];
 
-            dlg.excludedActivityTypes = options[@"iosExcludedActivities"];
+        dlg.excludedActivityTypes = options[@"iosExcludedActivities"];
+        if (options[@"title"]) {
+            [dlg setValue:options[@"title"] forKey:@"subject"];
+        }
 
-            if (options[@"title"]) {
-                [dlg setValue:options[@"title"] forKey:@"subject"];
-            }
+        UIPopoverPresentationController *popover = dlg.popoverPresentationController;
+        if (popover) {
+            popover.permittedArrowDirections = 0;
+            popover.sourceView = self.webView.superview;
+            popover.sourceRect = CGRectMake(CGRectGetMidX(self.webView.bounds), CGRectGetMidY(self.webView.bounds), 0, 0);
+        }
 
-            UIPopoverPresentationController *popover = dlg.popoverPresentationController;
-            if (popover) {
-                popover.permittedArrowDirections = 0;
-                popover.sourceView = self.webView.superview;
-                popover.sourceRect = CGRectMake(CGRectGetMidX(self.webView.bounds), CGRectGetMidY(self.webView.bounds), 0, 0);
-            }
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                dlg.completionWithItemsHandler = ^(NSString *activityType,
+        dlg.completionWithItemsHandler = ^(NSString *activityType,
                                           BOOL completed,
                                           NSArray *returnedItems,
                                           NSError *error){
-                    CDVPluginResult* pluginResult = NULL;
-                    if (error) {
-                        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
-                    } else if (completed) {
-                        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:activityType];
-                    } else {
-                        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
-                    }
+            CDVPluginResult* pluginResult = NULL;
+            if (error) {
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
+            } else if (completed) {
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:activityType];
+            } else {
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
+            }
 
-                    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-                };
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        };
 
-                [self.getTopPresentedViewController presentViewController:dlg animated:YES completion:NULL];
-            });
-        }];
+        [self.getTopPresentedViewController presentViewController:dlg animated:YES completion:NULL];
     }
 }
 
