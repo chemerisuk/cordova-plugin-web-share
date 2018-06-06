@@ -28,12 +28,14 @@ navigator.share({
 
 Method returns a `Promise` object that resolved on success.
 
-Unlike the standard, that is web-oriented therefore must be very carefull on allowing access to private user information, apps are usually less restricted. So in the plugin returned promise resolves with a string value - package name of the app that user used to share:
+Additionally to the standard, the plugin detects which activity was used to share. Resolved value is an array of selected activity names:
 
 ```js
-navigator.share({...}).then((packageName) => {
-    if (packageName) {
-        console.log("Data was shared successfully with", packageName);        
+navigator.share({...}).then((packageNames) => {
+    if (packageNames.length > 0) {
+        console.log("Shared successfully with activity", packageNames[0]);
+    } else {
+        console.log("Share was aborted");
     }
 }).catch((err) => {
     console.error("Share failed:", err.message);
