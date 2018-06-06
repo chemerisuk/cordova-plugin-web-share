@@ -96,14 +96,12 @@ public class WebSharePlugin extends CordovaPlugin {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == SHARE_REQUEST_CODE && this.shareCallbackContext != null) {
-            if (resultCode == Activity.RESULT_CANCELED) {
-                this.shareCallbackContext.success("");
-            } else if (lastChosenComponent != null) {
-                this.shareCallbackContext.success(lastChosenComponent.getPackageName());
-            } else {
-                this.shareCallbackContext.success("undefined");
+            JSONArray packageNames = new JSONArray();
+            if (resultCode == Activity.RESULT_OK) {
+                packageNames.put(lastChosenComponent != null ? lastChosenComponent.getPackageName() : "");
             }
 
+            this.shareCallbackContext.success(packageNames);
             this.shareCallbackContext = null;
         }
     }

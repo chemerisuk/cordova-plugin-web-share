@@ -41,10 +41,12 @@
             CDVPluginResult* pluginResult = NULL;
             if (error) {
                 pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
-            } else if (completed) {
-                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:activityType];
             } else {
-                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
+                NSMutableArray *packageNames = [[NSMutableArray alloc] init];
+                if (completed) {
+                    [packageNames addObject:activityType];
+                }
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:packageNames];
             }
 
             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
