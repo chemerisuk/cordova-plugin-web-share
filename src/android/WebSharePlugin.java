@@ -7,10 +7,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.util.Log;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.ComponentName;
@@ -28,8 +28,6 @@ public class WebSharePlugin extends CordovaPlugin {
     @Override
     protected void pluginInitialize() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-            Intent receiverIntent = new Intent(Intent.EXTRA_CHOSEN_COMPONENT);
-
             chosenComponentReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
@@ -61,6 +59,7 @@ public class WebSharePlugin extends CordovaPlugin {
         return false;
     }
 
+    @SuppressLint("NewApi")
     private void share(JSONObject options, CallbackContext callbackContext) throws JSONException {
         String text = options.getString("text");
         String title = options.optString("title");
