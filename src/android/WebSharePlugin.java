@@ -4,7 +4,6 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
@@ -50,7 +49,7 @@ public class WebSharePlugin extends CordovaPlugin {
     }
 
     @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
         if (action.equals("share")) {
             this.share(args.getJSONObject(0), callbackContext);
 
@@ -60,13 +59,13 @@ public class WebSharePlugin extends CordovaPlugin {
     }
 
     @SuppressLint("NewApi")
-    private void share(JSONObject options, CallbackContext callbackContext) throws JSONException {
-        String text = options.getString("text");
+    private void share(JSONObject options, CallbackContext callbackContext) {
+        String text = options.optString("text");
         String title = options.optString("title");
         String url = options.optString("url");
 
         if (!url.isEmpty()) {
-            text += "\n" + url;
+            text = text.isEmpty() ? url : text + "\n" + url;
         }
 
         Intent sendIntent = new Intent(Intent.ACTION_SEND);
