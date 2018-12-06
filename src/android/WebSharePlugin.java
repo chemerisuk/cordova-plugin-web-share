@@ -1,11 +1,5 @@
 package by.chemerisuk.cordova;
 
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CallbackContext;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -16,7 +10,15 @@ import android.content.ComponentName;
 import android.content.IntentFilter;
 import android.os.Build;
 
-public class WebSharePlugin extends CordovaPlugin {
+import by.chemerisuk.cordova.support.CordovaMethod;
+import by.chemerisuk.cordova.support.ReflectiveCordovaPlugin;
+
+import org.apache.cordova.CallbackContext;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+
+public class WebSharePlugin extends ReflectiveCordovaPlugin {
     private static final int SHARE_REQUEST_CODE = 18457896;
 
     private CallbackContext shareCallbackContext;
@@ -48,22 +50,12 @@ public class WebSharePlugin extends CordovaPlugin {
         }
     }
 
-    @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
-        if (action.equals("share")) {
-            this.share(args.getJSONObject(0), callbackContext);
-
-            return true;
-        }
-        return false;
-    }
-
     @SuppressLint("NewApi")
+    @CordovaMethod
     private void share(JSONObject options, CallbackContext callbackContext) {
         String text = options.optString("text");
         String title = options.optString("title");
         String url = options.optString("url");
-
         if (!url.isEmpty()) {
             text = text.isEmpty() ? url : text + "\n" + url;
         }
@@ -71,14 +63,12 @@ public class WebSharePlugin extends CordovaPlugin {
         Intent sendIntent = new Intent(Intent.ACTION_SEND);
         sendIntent.setType("text/plain");
         sendIntent.putExtra(Intent.EXTRA_TEXT, text);
-
         if (!title.isEmpty()) {
             sendIntent.putExtra(Intent.EXTRA_SUBJECT, title);
         }
 
         if (chosenComponentPI != null) {
             sendIntent = Intent.createChooser(sendIntent, title, chosenComponentPI.getIntentSender());
-
             lastChosenComponent = null;
         } else {
             sendIntent = Intent.createChooser(sendIntent, title);
@@ -91,8 +81,6 @@ public class WebSharePlugin extends CordovaPlugin {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == SHARE_REQUEST_CODE && this.shareCallbackContext != null) {
             JSONArray packageNames = new JSONArray();
             if (resultCode == Activity.RESULT_OK) {
