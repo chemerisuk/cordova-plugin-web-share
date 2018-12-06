@@ -1,7 +1,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 xmlns:android="http://schemas.android.com/apk/res/android"
            id="cordova-plugin-web-share"
-      version="1.1.0">
+      version="1.2.0">
 
     <name>WebShare</name>
     <description>Web Share API polyfill for Cordova</description>
