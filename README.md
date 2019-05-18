@@ -1,4 +1,4 @@
-# cordova-plugin-web-share<br>[![NPM version][npm-version]][npm-url] [![NPM downloads][npm-downloads]][npm-url]
+# cordova-plugin-web-share<br>[![NPM version][npm-version]][npm-url] [![NPM downloads][npm-downloads]][npm-url] [![Twitter][twitter-follow]][twitter-url]
 > Web Share API polyfill for Cordova
 
 ## Installation
@@ -45,4 +45,5 @@ navigator.share({...}).then((packageNames) => {
 [npm-url]: https://www.npmjs.com/package/cordova-plugin-web-share
 [npm-version]: https://img.shields.io/npm/v/cordova-plugin-web-share.svg
 [npm-downloads]: https://img.shields.io/npm/dm/cordova-plugin-web-share.svg
-
+[twitter-url]: https://twitter.com/chemerisuk
+[twitter-follow]: https://img.shields.io/twitter/follow/chemerisuk.svg?style=social&label=Follow%20me
