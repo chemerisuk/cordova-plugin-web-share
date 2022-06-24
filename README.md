@@ -19,19 +19,7 @@ navigator.share({
     title: "Share topic",
     text: "Share message",
     url: "Share url"
-}).then(() => {
-    console.log("Data was shared successfully");
-}).catch((err) => {
-    console.error("Share failed:", err.message);
-});
-```
-
-Method returns a `Promise` object that resolved on success.
-
-Additionally to the standard, the plugin detects which activity was used to share. Resolved value is an array of selected activity names:
-
-```js
-navigator.share({...}).then((packageNames) => {
+}).then((packageNames) => {
     if (packageNames.length > 0) {
         console.log("Shared successfully with activity", packageNames[0]);
     } else {
@@ -41,6 +29,10 @@ navigator.share({...}).then((packageNames) => {
     console.error("Share failed:", err.message);
 });
 ```
+
+Method returns a `Promise` object that resolved on success.
+
+Additionally to the standard, the plugin detects which activity was used to share. Resolved value is an array of selected activity names used for sharing.
 
 [npm-url]: https://www.npmjs.com/package/cordova-plugin-web-share
 [npm-version]: https://img.shields.io/npm/v/cordova-plugin-web-share.svg
