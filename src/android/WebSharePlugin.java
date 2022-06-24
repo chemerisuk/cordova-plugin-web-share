@@ -39,7 +39,7 @@ public class WebSharePlugin extends ReflectiveCordovaPlugin {
             cordova.getActivity().registerReceiver(chosenComponentReceiver, new IntentFilter(Intent.EXTRA_CHOSEN_COMPONENT));
 
             chosenComponentPI = PendingIntent.getBroadcast(cordova.getActivity(),
-                SHARE_REQUEST_CODE + 1, new Intent(Intent.EXTRA_CHOSEN_COMPONENT), PendingIntent.FLAG_CANCEL_CURRENT);
+                SHARE_REQUEST_CODE + 1, new Intent(Intent.EXTRA_CHOSEN_COMPONENT), PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_MUTABLE);
         }
     }
 
