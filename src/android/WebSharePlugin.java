@@ -14,7 +14,9 @@ import by.chemerisuk.cordova.support.CordovaMethod;
 import by.chemerisuk.cordova.support.ReflectiveCordovaPlugin;
 
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaArgs;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -52,7 +54,8 @@ public class WebSharePlugin extends ReflectiveCordovaPlugin {
 
     @SuppressLint("NewApi")
     @CordovaMethod
-    private void share(JSONObject options, CallbackContext callbackContext) {
+    protected void share(CordovaArgs args, CallbackContext callbackContext) throws JSONException {
+        JSONObject options = args.getJSONObject(0);
         String text = options.optString("text");
         String title = options.optString("title");
         String url = options.optString("url");
