@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.Context;
-import android.os.Build;
 
 import by.chemerisuk.cordova.support.CordovaMethod;
 import by.chemerisuk.cordova.support.ReflectiveCordovaPlugin;
@@ -25,13 +24,10 @@ public class WebSharePlugin extends ReflectiveCordovaPlugin {
     @Override
     protected void pluginInitialize() {
         Context context = cordova.getActivity().getApplicationContext();
-        int flags = PendingIntent.FLAG_CANCEL_CURRENT;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S_V2) {
-            flags |= PendingIntent.FLAG_MUTABLE;
-        }
         chosenComponentPI = PendingIntent.getBroadcast(context,
                 SHARE_REQUEST_CODE + 1,
-                new Intent(context, WebShareReceiver.class), flags);
+                new Intent(context, WebShareReceiver.class),
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
     }
 
     @CordovaMethod
