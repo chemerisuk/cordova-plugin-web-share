@@ -10,7 +10,9 @@ public class WebShareReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        lastChosenComponent = (ComponentName)intent.getExtras().get(Intent.EXTRA_CHOSEN_COMPONENT);
+        if (intent.getExtras() != null) {
+            lastChosenComponent = (ComponentName) intent.getExtras().get(Intent.EXTRA_CHOSEN_COMPONENT);
+        }
     }
 
     public static void resetChosenComponent() {
